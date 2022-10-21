@@ -54,7 +54,7 @@ $(function(){
             // 将登录成功得到的token字符串，保存到localStorage（本地存储）中，用的时候可以取出
            localStorage.setItem('token',res.token)
             // 跳转到后台主页
-            // location.href='/index.html'
+            location.href='/index.html'
         })
 
     })
