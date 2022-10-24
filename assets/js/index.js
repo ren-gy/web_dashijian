@@ -1,5 +1,5 @@
 $(function(){
-    getUserInfor()
+    getUserInfor1()
     let layer = layui.layer
     $('#btnlogout').on('click',function(){
         layer.confirm('此操作将退出登录, 是否继续?', {icon: 3, title:'提示'}, function(index){
@@ -14,8 +14,8 @@ $(function(){
     })
 
 })
-// 发起请求
-function getUserInfor(){
+// 发起请求,更新头像
+function getUserInfor1(){
     $.ajax({
         method:'GET',
         url:'/my/userinfo',
@@ -44,19 +44,22 @@ function getUserInfor(){
 }
 // 渲染用户头像
 function rendeAvatar(user){
+    let name = user.nickname || user.username
+    let first = name[0].toUpperCase()
     if(user != undefined){
+       
         // console.log(user);
         if(user.user_pic != null){
             // 渲染用户头像
             $('#welcome').html(user.username)
-            $('.layui-nav-img').attr('src',user_pic).show()
+            $('.layui-nav-img').attr('src',user.user_pic).show()
             $('.text-avater').hide()
         }else{
             // 渲染文字头像
-            let name = user.username[0].toUpperCase()
-            console.log(name);
-            $('#welcome').html('欢迎'+user.username)
-            $('.text-avater').html(name).show()
+            
+            // console.log(name);
+            $('#welcome').html('欢迎'+name)
+            $('.text-avater').html(first).show()
             $('.layui-nav-img').hide()
 
         }
